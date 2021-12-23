@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .article-detail {
     padding: 50px 50px 0;
     background: #fff;

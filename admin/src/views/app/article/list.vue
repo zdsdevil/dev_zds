@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 .article-list {
     padding: 30px;
 }

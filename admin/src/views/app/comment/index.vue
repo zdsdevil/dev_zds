@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 .comment-drawer {
     .open-btn {
         position: fixed;
