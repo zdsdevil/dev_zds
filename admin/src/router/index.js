@@ -1,13 +1,18 @@
 import router from './routers'
 import store from '@/store'
 
+const whiteList = ['/user/login']
 router.beforeEach((to, from, next) => {
   let userInfo = store.getters.userInfo;
-  if (!userInfo || !userInfo.id) {
-    store.dispatch('GetInfo').then(res => {
-      next();
-    })
-  } else {
+  if (whiteList.indexOf(to.path) > -1) {
     next();
+  } else {
+    if ((!userInfo || !userInfo.id)) {
+      store.dispatch('GetInfo').then(res => {
+        next();
+      })
+    } else {
+      next();
+    }
   }
 })
