@@ -12,6 +12,14 @@
                     <a-icon type="home" />
                 </div>
             </a-tooltip>
+            <a-tooltip placement="bottom" v-show="showListIcon">
+                <template slot="title">
+                    <span>返回列表</span>
+                </template>
+                <div class="icon-block" @click="goList">
+                    <a-icon type="menu" />
+                </div>
+            </a-tooltip>
         </div>
         <div class="name">{{userInfo.username}}</div>
         <!-- <div class="enName">dev_zds's Blog</div> -->
@@ -32,20 +40,29 @@ export default {
     },
     data() {
         return {
-            minHeight: ''
+            minHeight: '',
+            showListIcon: false
         }
     },
     methods: {
         goHome() {
+            this.$router.push('/')
+        },
+        goList() {
             let pathArr = this.$route.path.split('detail');
-            if(pathArr.length < 2) return
+            if (pathArr.length < 2) return
             let path = pathArr[0]
             this.$router.push(path)
         }
     },
+    watch: {
+        '$route'(val) {
+            this.showListIcon = val.name === 'articleList' ? false : true;
+        }
+    },
     mounted() {
-           if(window.innerWidth > 768) {
-               this.minHeight = '100%';
+        if (window.innerWidth > 768) {
+            this.minHeight = '100%';
         } else {
             this.minHeight = window.innerHeight / 2 + 'px';
         }
@@ -97,7 +114,10 @@ export default {
         }
 
         .icons {
+            display: flex;
+            width: 70px;
             margin-top: 15px;
+            justify-content: space-evenly;
 
             .icon-block {
                 width: 26px;

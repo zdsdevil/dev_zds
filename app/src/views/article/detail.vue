@@ -132,5 +132,8 @@ export default {
     .article-detail {
         padding: 20px 20px 0;
     }
+    .tit {
+        font-size: 30px;
+    }
 }
 </style>

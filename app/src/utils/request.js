@@ -62,13 +62,18 @@ request.interceptors.response.use((response) => {
         message: data.error
       })
       break;
+    case 404:
+      notification.error({
+        message: data.error
+      })
+      break;
   }
   return Promise.reject(data.error)
 }, errorHandler)
 
 const installer = {
   vm: {},
-  install (Vue) {
+  install(Vue) {
     Vue.use(VueAxios, request)
   }
 }

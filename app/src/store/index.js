@@ -13,8 +13,14 @@ export default new Vuex.Store({
     app,
     user
   },
-  state: {},
-  mutations: {},
+  state: {
+    showPageLoadScrollBar: false
+  },
+  mutations: {
+    setShowPageLoadScrollBar (state, data) {
+      state.showPageLoadScrollBar = !!data
+    }
+  },
   actions: {},
   getters
 })

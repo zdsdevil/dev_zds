@@ -1,7 +1,7 @@
 <template>
 <a-layout class="container" :style="{'height': containerHeight}">
-    <a-layout-sider :style="bgStyle">
-        <userInfo :userInfo="userInfo" :style="{minHeight: bgStyle.minHeight}"></userInfo>
+    <a-layout-sider width="38.2%" :style="bgStyle">
+        <userInfo :userInfo="userInfo" :style="{minHeight: minHeight}"></userInfo>
     </a-layout-sider>
     <a-layout-content>
         <router-view :style="{'min-height': containerHeight}"></router-view>
@@ -17,11 +17,9 @@ import {
     getUserByUsername
 } from '@/api/user'
 import userInfo from './userInfo.vue'
-import articleList from '@/views/article/list.vue'
 export default {
     components: {
-        userInfo,
-        articleList
+        userInfo
     },
     data() {
         return {
@@ -30,7 +28,8 @@ export default {
             containerMinHeight: '',
             blogger_username: '',
             timer: null,
-            bgStyle: {}
+            bgStyle: {},
+            minHeight: ''
         }
     },
     created() {
@@ -44,17 +43,18 @@ export default {
         })
         if(window.innerWidth > 768) {
             this.containerHeight = window.innerHeight + 'px';
-            delete this.bgStyle.minHeight;
+            this.minHeight = 'auto'
         } else {
             this.containerHeight = '100%'
-            this.bgStyle.minHeight = window.innerHeight / 2 + 'px !important';
+            this.minHeight = window.innerHeight / 2 + 'px !important';
         }
     },
     methods: {
         loopBg() {
             let that = this;
-            const bgImgs = that.userInfo.blogConfig ? that.userInfo.blogConfig.bgImgs.map(item => fileBaseUrl + item) : ['~@/assets/img/01.jpg', '~@/assets/img/02.jpg', '~@/assets/img/03.jpg', '~@/assets/img/04.jpg', '~@/assets/img/05.jpg', '~@/assets/img/06.jpg', '~@/assets/img/06.jpg'];
+            const bgImgs = that.userInfo.blogConfig ? that.userInfo.blogConfig.bgImgs.map(item => fileBaseUrl + item) : [];
             let len = bgImgs.length;
+            if(!len) return;
             let curIndex = 0;
             that.setBg(bgImgs[curIndex]);
             that.timer = setInterval(() => {
@@ -63,10 +63,10 @@ export default {
             }, 5000)
         },
         setBg(url) {
-            this.bgStyle = Object.assign({},this.bgStyle,{
+            this.bgStyle = {
                 background: `url('${url}') no-repeat`,
                 backgroundSize: '100% 100%'
-            })
+            }
         }
     },
     beforeDestroy() {
@@ -81,9 +81,11 @@ export default {
     height: 100%;
 
     .ant-layout-sider {
-        width: 38.2%;
+        width: 38.2% !important;
         height: 100%;
         transition: all 2s;
+        background: url('~@/assets/img/01.jpg') no-repeat;
+        background-size: '100% 100%';
     }
 }
 
