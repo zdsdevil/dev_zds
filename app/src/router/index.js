@@ -30,9 +30,10 @@ const routes = [
     }]
   }
 ];
+
 const router = new VueRouter({
   mode: "history",
-  base: 'app',
+  base: process.env.BASE_URL,
   routes,
 });
 
