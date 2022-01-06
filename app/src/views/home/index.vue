@@ -2,7 +2,7 @@
 <div class="max">
     <div id="scene" class="img-outer">
         <div data-depth="0.4" class="layer">
-            <img src="https://efiles.oss-cn-shenzhen.aliyuncs.com/file/main.jpg" class="moveImg" :width="imgWidth" :height="imgHeight">
+            <img src="@img/main.jpg" class="moveImg" :width="imgWidth" :height="imgHeight">
         </div>
     </div>
     <div class="mask"></div>
@@ -121,7 +121,6 @@ export default {
         top: 54%;
         left: 10%;
         color: #fff;
-        width: 30%;
         transform: translateY(-50%);
         color: #fff;
         font-size: .5rem;

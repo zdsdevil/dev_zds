@@ -4,7 +4,7 @@
             <img src="@img/logo.png">
         </div>
 
-        <img class="rain-bg" src="https://efiles.oss-cn-shenzhen.aliyuncs.com/file/rain-bg.gif" draggable="false">
+        <img class="rain-bg" src="@img/rain/rain-bg.gif" draggable="false">
         <img class="words" src="@img/rain/words.png" draggable="false">
 
         <ul class="option flex align-center" v-show="show">
@@ -33,25 +33,19 @@ export default {
                 {
                     on: require('@img/rain/rain_on.png'),
                     off: require('@img/rain/rain_off.png'),
-                    music: 'https://efiles.oss-cn-shenzhen.aliyuncs.com/file/thunder.mp3',
+                    music: require('@/static/video/thunder.mp3'),
                     active: false
                 },
                 {
                     on: require('@img/rain/rain2_on.png'),
                     off: require('@img/rain/rain2_off.png'),
-                    music: 'https://efiles.oss-cn-shenzhen.aliyuncs.com/file/loudThunder.mp3',
+                    music: require('@/static/video/loudThunder.mp3'),
                     active: false
                 },
                 {
                     on: require('@img/rain/rain3_on.png'),
                     off: require('@img/rain/rain3_off.png'),
-                    music: 'https://efiles.oss-cn-shenzhen.aliyuncs.com/file/rain.mp3',
-                    active: false
-                },
-                {
-                    on: require('@img/rain/rain4_on.png'),
-                    off: require('@img/rain/rain4_off.png'),
-                    music: 'https://efiles.oss-cn-shenzhen.aliyuncs.com/file/bizhibian.mp3',
+                    music: require('@/static/video/rain.mp3'),
                     active: false
                 }
             ],
@@ -83,11 +77,7 @@ export default {
         },
         // 提示用户，让用户手动触发
         userToast () {
-          const h = this.$createElement;
-          this.$notify({
-            title: '提示',
-            message: h('span', { style: 'color: #008c8c'}, '请点击一次页面开始聆听雨声哦！也可以在右下角关闭或者打开其他声音。右上角logo可以回到首页')
-          });
+         
         }
     }
 }
@@ -137,16 +127,6 @@ export default {
             span{
                 display: inline-block;
             }
-            &:last-child {
-                width: 108px;
-                height: 73px;
-                line-height: 73px;
-                img {
-                    widows: 50px;
-                    height: 30px;
-                    vertical-align: middle;
-                }
-            }
         }
     }
 }
@@ -189,19 +169,6 @@ export default {
                 span{
                     display: flex;
                     justify-content: center;
-                }
-                &:last-child {
-                    width: 60px;
-                    height: 40px;
-                    line-height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    img {
-                        width: auto;
-                        height: 30px;
-                        vertical-align: middle;
-                    }
                 }
             }
         }
