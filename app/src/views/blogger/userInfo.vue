@@ -21,7 +21,7 @@
                 </div>
             </a-tooltip>
         </div>
-        <div class="name">{{userInfo.username}}</div>
+        <div class="name">{{userInfo.nickname}}</div>
         <!-- <div class="enName">dev_zds's Blog</div> -->
         <div class="resume">{{userInfo.resume}}</div>
     </div>
