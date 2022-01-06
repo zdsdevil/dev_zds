@@ -12,7 +12,7 @@
         <div class="content">春秋十四甲之摸鱼甲</div>
     </div>
     <div class="nav">
-      <div class="nav-item" @click="go('dev')">article</div>
+      <div class="nav-item" @click="go('dev_zds')">article</div>
       <div class="nav-item" @click="go('rain')">听雨</div>
     </div>
 </div>
