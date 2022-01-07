@@ -2,9 +2,7 @@
 <div id="app">
     <pageLoadScrollBar />
     <transition class="change" name="fade" mode="out-in">
-        <keep-alive>
-            <router-view />
-        </keep-alive>
+        <router-view />
     </transition>
 </div>
 </template>
