@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         async getBlogList() {
-            let res = await getBlogList();
+            let res = await getBlogList({auth: this.blogger_id});
             if(res.code !== 200) return;
             this.list = res.result.data.map(item => {
                 const imgMatch = item.MdContent ? item.MdContent.match(/!\[(.*?)\]\((.*?)\)/) : '';

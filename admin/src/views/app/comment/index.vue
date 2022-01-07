@@ -7,7 +7,7 @@
             <comment :root="self" :blogId="blogId" :list="comments"></comment>
         </template>
         <a-comment>
-            <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
+            <a-avatar slot="avatar" :src="userInfo.avatar"/>
             <div slot="content">
                 <a-form-item>
                     <a-textarea :rows="4" :value="value" @change="handleChange" />
@@ -51,7 +51,8 @@ export default {
             comments: [],
             submitting: false,
             value: '',
-            replayContent: ''
+            replayContent: '',
+            userInfo: this.$store.getters.userInfo
         };
     },
     watch: {

@@ -2,7 +2,7 @@
 <div>
     <a-comment v-for="item in list" :key="item.id">
         <template slot="actions">
-            <span key="comment-basic-like">
+            <!-- <span key="comment-basic-like">
                 <a-tooltip title="Like">
                     <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" @click="like" />
                 </a-tooltip>
@@ -17,12 +17,12 @@
                 <span style="padding-left: '8px';cursor: 'auto'">
                     {{ item.dislike }}
                 </span>
-            </span>
+            </span> -->
             <span key="comment-basic-reply-to" v-if="replyId === item.id" @click="replyId = ''">取消回复</span>
             <span key="comment-basic-reply-to" v-else @click="replyId = item.id">回复</span>
         </template>
         <a slot="author">{{item.auth.username}} <span v-if="item.reply_user"> <span class="">回复</span> {{item.reply_user.username}}</span> </a>
-        <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
+        <a-avatar slot="avatar" :src="item.auth.avatar" />
         <p slot="content">{{item.content}}</p>
         <a-tooltip slot="datetime" :title="moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss')">
             <span>{{ moment(item.createdAt).fromNow() }}</span>

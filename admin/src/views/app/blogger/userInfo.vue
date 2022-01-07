@@ -2,10 +2,20 @@
 <div class="userInfo">
     <div class="mask"></div>
     <div class="info">
-        <a-avatar class="avatar" :size="100" :src="avatar"></a-avatar>
-        <div class="name">钟大仙</div>
-        <div class="enName">dev_zds's Blog</div>
-        <!-- <div class="note">记录生活、记录代码</div> -->
+        <a-avatar class="avatar" :size="100" :src="userInfo.avatar"></a-avatar>
+        <div class="icons">
+            <a-tooltip placement="bottom">
+                <template slot="title">
+                    <span>返回主页</span>
+                </template>
+                <div class="icon-block" @click="goHome">
+                    <a-icon type="home" />
+                </div>
+            </a-tooltip>
+        </div>
+        <div class="name">{{userInfo.username}}</div>
+        <!-- <div class="enName">dev_zds's Blog</div> -->
+        <div class="resume">{{userInfo.resume}}</div>
     </div>
 </div>
 </template>
@@ -14,7 +24,13 @@
 export default {
     data() {
         return {
-            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+            userInfo: this.$store.getters.userInfo
+        }
+    },
+    methods: {
+        goHome() {
+            let path = this.$route.path.split('detail')[0]
+            this.$router.push(path)
         }
     }
 }
@@ -47,17 +63,38 @@ export default {
         height: 100%;
         color: #fff;
         opacity: .8;
+
         .name {
-            margin-top: 40px;
+            margin-top: 20px;
             font-size: 32px;
         }
+
         .enName {
             margin-top: 20px;
             font-size: 24px;
         }
+
         .note {
             margin-top: 20px;
             font-size: 16px;
+        }
+
+        .icons {
+            margin-top: 15px;
+
+            .icon-block {
+                width: 26px;
+                height: 26px;
+                line-height: 24px;
+                border: 1px solid #ddd;
+                border-radius: 50%;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    background: rgba(221, 221, 221, 0.3);
+                }
+            }
         }
     }
 }

@@ -1,18 +1,35 @@
-import router from './routers'
-import store from '@/store'
+// import Vue from 'vue'
+// import Router from 'vue-router'
+// import { constantRouterMap } from '@/config/router.config'
 
-const whiteList = ['/user/login','/user/register']
-router.beforeEach((to, from, next) => {
-  let userInfo = store.getters.userInfo;
-  if (whiteList.indexOf(to.path) > -1) {
-    next();
-  } else {
-    if ((!userInfo || !userInfo.id)) {
-      store.dispatch('GetInfo').then(res => {
-        next();
-      })
-    } else {
-      next();
-    }
-  }
+// // hack router push callback
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push (location, onResolve, onReject) {
+//   if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+//   return originalPush.call(this, location).catch(err => err)
+// }
+
+// Vue.use(Router)
+
+// export default new Router({
+//   mode: 'history',
+//   routes: constantRouterMap
+// })
+
+
+import Vue from 'vue'
+import Router from 'vue-router'
+import { constantRouterMap, blogAppRouterMap, asyncRouterMap } from '@/config/router.config'
+
+Vue.use(Router)
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+return originalPush.call(this, location).catch(err => err)
+}
+
+export default new Router({
+  mode: 'history',
+  routes: constantRouterMap.concat(blogAppRouterMap).concat(asyncRouterMap)
 })

@@ -47,12 +47,7 @@ import AvatarModal from './AvatarModal'
 import {
     baseMixin
 } from '@/store/app-mixin'
-import {
-    mapGetters
-} from 'vuex'
-import {
-    updateUser
-} from '@/api/userManager'
+import store from '@/store'
 export default {
     mixins: [baseMixin],
     components: {
@@ -82,7 +77,7 @@ export default {
         }
     },
     mounted() {
-        this.userInfo = this.$store.getters.userInfo;
+        this.userInfo = store.getters.userInfo;
         this.option.img = this.userInfo.avatar;
     },
     methods: {
@@ -98,13 +93,13 @@ export default {
             }
         },
         setAvatar(url) {
+            debugger
             this.option.img = url
         },
         save() {
             this.form.validateFields((err, values) => {
                 if (!err) {
-                    console.log(this.form)
-                    updateUser({
+                    store.dispatch('UpdateUser',{
                         id: this.userInfo._id,
                         avatar: this.option.img,
                         ...values

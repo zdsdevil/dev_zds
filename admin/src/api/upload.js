@@ -8,3 +8,11 @@ export function uploadSingleFile(data) {
     data
   })
 }
+//上传多个文件
+export function uploadMultipleFile(data) {
+  return request({
+    url: '/api/uploads',
+    method: 'post',
+    data
+  })
+}

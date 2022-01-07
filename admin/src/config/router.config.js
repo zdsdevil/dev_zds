@@ -13,7 +13,7 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/dashboard/workplace',
+    redirect: '/account/settings',
     children: [
       // dashboard
       {
@@ -241,6 +241,12 @@ export const asyncRouterMap = [
             name: 'blogList',
             component: () => import('@/views/blog/BlogList'),
             meta: { title: '博客列表', keepAlive: true, permission: ['user'] }
+          },
+          {
+            path: '/blog/set',
+            name: 'blogSet',
+            component: () => import('@/views/blog/BlogSet'),
+            meta: { title: '博客配置', keepAlive: true, permission: ['user'] }
           },
           {
             path: '/blog/edit/:id',

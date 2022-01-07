@@ -11,7 +11,7 @@
                 <a-col :md="16" :sm="24">
                     <span class="table-page-search-submitButtons">
                         <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-                        <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+                        <a-button style="margin-left: 8px" @click="reset">重置</a-button>
                     </span>
                 </a-col>
             </a-row>
@@ -133,6 +133,7 @@ export default {
             columns,
             // 加载数据方法 必须为 Promise 对象
             loadData: parameter => {
+                console.log(parameter)
                 return getBlogList(Object.assign(parameter, this.queryParam))
                     .then(res => {
                         return res.result
@@ -149,6 +150,10 @@ export default {
 
     },
     methods: {
+        reset() {
+            this.queryParam = {};
+            this.$refs.table.refresh(true)
+        },
         handleAdd() {
             this.visible = true
             this.modalTitle = '新增'

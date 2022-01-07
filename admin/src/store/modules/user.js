@@ -1,5 +1,6 @@
 import storage from 'store'
 import { login, getInfo, logout } from '@/api/login'
+import { updateUser } from '@/api/userManager'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 
@@ -46,7 +47,21 @@ const user = {
         })
       })
     },
-
+    //更新用户信息
+    UpdateUser({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        updateUser(data).then(response => {
+          const result = response.result
+          commit('SET_ROLES', result.role || ['admin'])
+          commit('SET_INFO', result)
+          commit('SET_NAME', { name: result.username, welcome: welcome() })
+          commit('SET_AVATAR', result.avatar)
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetInfo ({ commit }) {
       return new Promise((resolve, reject) => {
@@ -68,7 +83,7 @@ const user = {
           //   resolve(response)
           //   // reject(new Error('getInfo: roles must be a non-null array !'))
           // }
-          commit('SET_ROLES', result.role)
+          commit('SET_ROLES', result.role || ['admin'])
           commit('SET_INFO', result)
           commit('SET_NAME', { name: result.username, welcome: welcome() })
           commit('SET_AVATAR', result.avatar)
