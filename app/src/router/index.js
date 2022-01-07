@@ -20,6 +20,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "rain" */ '@/views/rain/index')
   },
   {
+    path: '/404',
+    name: '404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404')
+  },
+  {
     path: '/blogger/:username',
     name: 'blogger',
     redirect: 'blogger/:username/list',
@@ -38,7 +43,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.NODE_ENV === 'production' ? '/admin/' : process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes,
   scrollBehavior () { // 页面刷新后回到顶部
     return { x: 0, y: 0}

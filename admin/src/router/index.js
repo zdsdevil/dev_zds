@@ -31,5 +31,6 @@ return originalPush.call(this, location).catch(err => err)
 
 export default new Router({
   mode: 'history',
+  base: process.env.NODE_ENV === 'production' ? '/admin/' : process.env.BASE_PATH,
   routes: constantRouterMap.concat(blogAppRouterMap).concat(asyncRouterMap)
 })
