@@ -72,7 +72,7 @@ export default {
     background: #fff;
 
     .tit {
-        font-size: 60px;
+        font-size: 48px;
         font-weight: bold;
         color: #333;
     }
@@ -133,7 +133,7 @@ export default {
         padding: 20px 20px 0;
 
         .tit {
-            font-size: 30px;
+            font-size: 24px;
         }
     }
 }

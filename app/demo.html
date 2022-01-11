@@ -10,19 +10,27 @@
 
     <body>
         <script>
-            var twoSum = function (nums, target) {
-                let hash = {};
-                hash[nums[0]] = 0;
-                for (let i = 1; i < nums.length; i++) {
-                    if (hash[target - nums[i]] === undefined) {
-                        hash[nums[i]] = i;
+            var romanToInt = function (s) {
+                const symbolValues = new Map();
+                symbolValues.set('I', 1);
+                symbolValues.set('V', 5);
+                symbolValues.set('X', 10);
+                symbolValues.set('L', 50);
+                symbolValues.set('C', 100);
+                symbolValues.set('D', 500);
+                symbolValues.set('M', 1000);
+                let ans = 0;
+                const n = s.length;
+                for (let i = 0; i < n; ++i) {
+                    const value = symbolValues.get(s[i]);
+                    if (i < n - 1 && value < symbolValues.get(s[i + 1])) {
+                        ans -= value;
                     } else {
-                        return [hash[target - nums[i]], i]
+                        ans += value;
                     }
                 }
+                return ans;
             };
-            let arr = [2,7,11,15]
-            console.log(twoSum(arr,9))
         </script>
     </body>
 
