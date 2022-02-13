@@ -14,6 +14,7 @@
     <div class="nav">
       <div class="nav-item" @click="go('dev_zds')">article</div>
       <div class="nav-item" @click="go('rain')">听雨</div>
+      <div class="nav-item" @click="go('io')">聊天室</div>
     </div>
 </div>
 </template>
@@ -54,6 +55,8 @@ export default {
         go(url) {
             if(url === 'rain') {
               this.$router.push('/rain')
+            } else if (url === 'io') {
+              this.$router.push('/chat')
             } else {
               this.$router.push('/blogger/' + url)
             }

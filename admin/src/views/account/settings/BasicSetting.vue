@@ -93,7 +93,6 @@ export default {
             }
         },
         setAvatar(url) {
-            debugger
             this.option.img = url
         },
         save() {

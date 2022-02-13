@@ -79,3 +79,26 @@ export function resetPsw(data) {
   })
 }
 
+export function register(parameter) {
+  return request({
+    url: '/api/user/create',
+    method: 'post',
+    data: parameter
+  })
+}
+
+export function login(data) {
+  return request({
+    url: '/api/login',
+    method: 'post',
+    data
+  })
+}
+
+export function getInfo(params) {
+  return request({
+    url: '/api/current',
+    method: 'get',
+    params
+  })
+}

@@ -61,6 +61,9 @@ export default {
                 this.nextBlogInfo = !res.result.length ? {} : res.result[0];
             })
             readBlog(this.$route.params.articleId)
+        },
+        add() {
+            console.log('')
         }
     }
 }

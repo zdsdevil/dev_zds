@@ -20,6 +20,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "rain" */ '@/views/rain/index')
   },
   {
+    path: '/chat',
+    name: 'chat',
+    component: () => import(/* webpackChunkName: "chat" */ '@/views/chat/index')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import(/* webpackChunkName: "404" */ '@/views/404')
