@@ -23,8 +23,10 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios)
 Vue.use(new VueSocketIO({
   // debug: true,
-  // connection: 'http://127.0.0.1:80', //服务端连接
-  connection: 'http://124.222.47.163:7777', //服务端连接
+  connection: 'http://127.0.0.1:7001', //服务端连接
+  // connection: 'http://124.222.47.163:7777', //服务端连接
+  transports: ["websocket"],
+  allowEIO3: true,
   reconnection: true,
   reconnectionAttempts: Infinity,
   options: {
@@ -37,3 +39,7 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+
+
+

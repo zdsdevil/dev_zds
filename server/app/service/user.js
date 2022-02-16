@@ -34,14 +34,14 @@ class UserService extends Service {
       ctx.throw(404, 'user not found')
     }
     await ctx.model.User.findByIdAndUpdate(_id, payload)
-    return this.show(_id);
+    return this.show({_id});
   }
 
   // show======================================================================================================>
   async show(params) {
-    let query = params.id ? { id: params.id } : {username: params.username}
+    let query = params._id ? { _id: params._id } : {username: params.username}
     const user = await this.ctx.model.User.find(query)
-    if (!user) {
+    if (!user.length) {
       this.ctx.throw(404, 'user not found')
     }
     let res = await this.ctx.model.User.find(query).populate('role').lean()

@@ -3,7 +3,7 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app
+  const { router, controller, io } = app
   router.get('/', controller.home.index)
 
   // role
@@ -62,5 +62,18 @@ module.exports = app => {
   // router.get('/api/comment/:id', controller.comment.show)
   router.get('/api/comment/list', controller.comment.index)
   router.get('/api/comment/childrenComment/:id', controller.comment.childrenComment)
-  
+
+
+  //music
+  router.get('/api/music/hot', controller.music.hot)
+  router.get('/api/music/search', controller.music.search)
+  // socket
+  router.post('/api/chat/create', controller.chat.create)
+  router.get('/api/chat/list', controller.chat.index)
+  router.get('/api/chat/history', controller.chat.index)
+  io.route('chat', io.controller.chat.index);
+  io.route('message', io.controller.chat.message);
+  io.route('chooseMusic', io.controller.chat.chooseMusic);
+  io.route('cutMusic', io.controller.chat.cutMusic);
+  io.route('join', io.controller.chat.join);
 }

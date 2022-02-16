@@ -17,7 +17,7 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ 'http://localhost:8000' ],
+    domainWhiteList: [ 'http://localhost:8000','http://124.222.47.163:7777/' ],
   }
 
   config.multipart = {
@@ -42,6 +42,19 @@ module.exports = appInfo => {
     secret: 'Great4-M',
     enable: true, // default is false
     match: '/jwt', // optional
+  }
+
+  exports.io = {
+    namespace: {
+      '/': {
+        connectionMiddleware: ['connection'],
+        packetMiddleware: ['filter'],
+      },
+      '/msg':{
+        connectionMiddleware: [],
+        packetMiddleware: [],
+      }
+    },
   }
 
   return config
