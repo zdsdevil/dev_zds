@@ -33,10 +33,10 @@
             <icon name="chat-mine" scale="1.8" class="icon" />
             <span class="visible-xl visible-md visible-sm">我的</span>
         </div>
-        <div class="header-right-item flex_center" @click="toBlog">
+        <!-- <div class="header-right-item flex_center" @click="toBlog">
             <icon name="chat-go" scale="1.8" class="icon" />
             <span class="visible-xl visible-md visible-sm">前往</span>
-        </div>
+        </div> -->
     </div>
     <!-- popup -->
     <chat-popup :options="opt1" :top="60" :right="10" title="在线用户">
@@ -105,7 +105,7 @@ export default {
     watch: {},
     computed: {
         copyText() {
-            return "分享内容";
+            return "http://124.222.47.163/chat";
         },
         onLineNum() {
             return this.$store.state.chat.onlineUserList.length;
