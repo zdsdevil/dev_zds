@@ -58,7 +58,7 @@ export default {
             } else if (url === 'io') {
               this.$router.push('/chat')
             } else {
-              this.$router.push('/blogger/' + url)
+              this.$router.push('/blogger')
             }
         },
         getYearMonthDay() {

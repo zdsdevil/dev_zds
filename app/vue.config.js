@@ -63,6 +63,7 @@ const vueConfig = {
     // assets require on cdn
     if (isProd) {
       config.plugin('html').tap(args => {
+        args[0].title = '钟大仙'
         args[0].cdn = assetsCDN
         return args
       })
@@ -89,7 +90,7 @@ const vueConfig = {
     port: 8000,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:7001/api',
+        target: 'http://124.222.47.163:80/api',
         ws: false,
         changeOrigin: true,
         pathRewrite: {

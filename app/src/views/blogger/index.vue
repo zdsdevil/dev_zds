@@ -26,17 +26,16 @@ export default {
             userInfo: {},
             containerHeight: '100%',
             containerMinHeight: '',
-            blogger_username: '',
+            blogger_username: 'zds',
             timer: null,
             bgStyle: {},
             minHeight: ''
         }
     },
     created() {
-        this.blogger_username = this.$route.params.username;
     },
     mounted() {
-        getUserByUsername(this.$route.params.username).then(res => {
+        getUserByUsername(this.blogger_username).then(res => {
             this.userInfo = res.result;
             this.$store.commit('SET_INFO', this.userInfo);
             this.loopBg();

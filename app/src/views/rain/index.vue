@@ -23,6 +23,9 @@
 </template>
 
 <script>
+import thunder from './video/thunder.mp3'
+import loudThunder from './video/loudThunder.mp3'
+import rain from './video/rain.mp3'
 export default {
     name: 'rainy',
     data(){
@@ -33,19 +36,19 @@ export default {
                 {
                     on: require('@img/rain/rain_on.png'),
                     off: require('@img/rain/rain_off.png'),
-                    music: require('@/static/video/thunder.mp3'),
+                    music: thunder,
                     active: false
                 },
                 {
                     on: require('@img/rain/rain2_on.png'),
                     off: require('@img/rain/rain2_off.png'),
-                    music: require('@/static/video/loudThunder.mp3'),
+                    music: loudThunder,
                     active: false
                 },
                 {
                     on: require('@img/rain/rain3_on.png'),
                     off: require('@img/rain/rain3_off.png'),
-                    music: require('@/static/video/rain.mp3'),
+                    music: rain,
                     active: false
                 }
             ],
@@ -54,6 +57,7 @@ export default {
         }
     },
     activated(){
+        debugger;
       this.audioDom = document.getElementsByClassName("music");
       this.userToast()
       document.documentElement.addEventListener('click', this.oncePlay)
@@ -67,7 +71,8 @@ export default {
             this.$router.push('/')
         },
         music(type, active){
-            this.$set(this.rainIcon[type], 'active', !active)
+            this.audioDom = document.getElementsByClassName("music");
+            this.$set(this.rainIcon[type], 'active', !active);
             !active ? this.audioDom[type].play() : this.audioDom[type].pause()
         },
         // 让用户自动触发播放，不然浏览器会报错

@@ -30,9 +30,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "404" */ '@/views/404')
   },
   {
-    path: '/blogger/:username',
+    path: '/blogger',
     name: 'blogger',
-    redirect: 'blogger/:username/list',
+    redirect: '/blogger/list',
     component: () => import(/* webpackChunkName: "blogger" */ '@/views/blogger/index'),
     children: [{
       path: 'list',
