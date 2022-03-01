@@ -234,7 +234,7 @@ export default {
                     }
                     this.setMessageDataList({
                         message_type: "notice",
-                        message_content: [this.cur_room_info.notice],
+                        message_content: this.cur_room_info.notice.split(';'),
                     });
                     this.showInitNotice = true;
                 }

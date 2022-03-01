@@ -179,6 +179,9 @@ export default {
     input.common-input {
         margin: 0;
     }
+    .common-textarea {
+        line-height: 1.4;
+    }
 
     .btn {
         display: flex;
