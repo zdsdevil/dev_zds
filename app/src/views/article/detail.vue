@@ -63,7 +63,7 @@ export default {
             readBlog(this.$route.params.articleId)
         },
         add() {
-            console.log('')
+            
         }
     }
 }

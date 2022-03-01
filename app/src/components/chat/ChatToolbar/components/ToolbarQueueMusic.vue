@@ -13,7 +13,7 @@
             歌手：{{ item.music_artist }} 专辑:{{ item.music_album }}
           </div>
         </div>
-        <div class="music-btn" @click="tips">
+        <div v-show="index !== 0" class="music-btn" @click="toTop(index)">
           <icon name="queue-music-zan" scale="1.6" class="m_r3" />顶歌
         </div>
         <div class="music-btn" @click="removeQueueMusic(item)">
@@ -45,8 +45,11 @@ export default {
     tips() {
       this.$message.info('正在加班加点开发ing')
     },
+    toTop(index) {
+      this.$socket.emit('musicToTop', index)
+    },
     removeQueueMusic(musicInfo) {
-      this.$socket.client.emit('removeQueueMusic', musicInfo)
+      this.$socket.emit('removeQueueMusic', musicInfo)
     }
   }
 }

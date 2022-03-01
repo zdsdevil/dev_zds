@@ -2,32 +2,30 @@ import request from '@/utils/request'
 
 export function collectMusic(data) {
     return request({
-        url: '/api/music/collectMusic',
+        url: '/api/musicCollect/create',
         method: 'post',
         data
     })
 }
 
-export function removeCollect(data) {
+export function removeMusic(id) {
     return request({
-        url: '/api/music/removeCollect',
-        method: 'post',
-        data
+        url: '/api/musicCollect/remove/' + id,
+        method: 'delete'
+    })
+}
+
+export function musicCollectList(params) {
+    return request({
+        url: '/api/musicCollect/list',
+        method: 'get',
+        params
     })
 }
 
 export function search(params) {
     return request({
         url: '/api/music/search',
-        method: 'get',
-        params
-    })
-}
-
-
-export function collectList(params) {
-    return request({
-        url: '/api/music/collectList',
         method: 'get',
         params
     })

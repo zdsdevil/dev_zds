@@ -1,11 +1,11 @@
 <template>
   <div class="queue">
-    <div v-if="!musicList.length" class="empty">
+    <div v-if="!musicCollectList.length" class="empty">
       <icon name="choose-music-empty" scale="16" class="icon" />
       <span class="tips">你的歌单空空如也呢</span>
     </div>
     <div v-else class="queue-content">
-      <div v-for="(item, index) in musicList" :key="index" class="music">
+      <div v-for="(item, index) in musicCollectList" :key="index" class="music">
         <img :src="item.music_pic120" alt="item.music_name" class="music-pic" />
         <div class="music-info">
           <div class="music-info-name">{{ item.music_name }}</div>
@@ -25,33 +25,35 @@
 </template>
 
 <script>
-import { collectList, removeCollect } from "@/api/music";
+import { mapState, mapActions } from "vuex";
+import { removeMusic } from "@/api/music";
 export default {
   data() {
     return {
-      musicList: []
+
     }
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      musicCollectList: state => state.chat.musicCollectList,
+    })
+  },
   watch: {},
   created() {
-    this.queryCollectMusic()
+    this.getMusicCollectList();
   },
   mounted() {},
   methods: {
-    async queryCollectMusic() {
-      const res = await collectList()
-      this.musicList = res.data
-    },
+    ...mapActions(['getMusicCollectList']),
     chooseMusic(val) {
-      this.$socket.client.emit("chooseMusic", val)
+      this.$socket.emit("chooseMusic", val)
     },
     async removeMusic(item) {
-      const { music_mid } = item
-      if (!music_mid) return
-      await removeCollect({ music_mid })
+      const { _id } = item
+      if (!_id) return
+      await removeMusic(_id)
       this.$message.success('移除收藏音乐成功...')
-      this.queryCollectMusic()
+      this.getMusicCollectList();
     },
     tips() {
       this.$toast.info('正在加班加点开发ing')

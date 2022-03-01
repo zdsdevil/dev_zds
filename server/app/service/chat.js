@@ -12,19 +12,13 @@ class ChatService extends Service {
         const { pageNo, pageSize, isPaging } = payload
         let res = []
         let query = {};
-        if (payload.blogId) {
-            query.blogId = payload.blogId
+        if (payload.room_id) {
+            query.room_id = payload.room_id
         }
         res = await this.ctx.model.Chat.find({ ...query }).populate('user_info').sort({ createdAt: 1 }).lean()
 
         return { data: res }
     }
-
-    // Commons======================================================================================================>
-    async find(id) {
-        return this.ctx.model.Comment.findById(id)
-    }
-
 }
 
 module.exports = ChatService

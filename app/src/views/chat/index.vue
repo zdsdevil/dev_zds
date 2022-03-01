@@ -51,7 +51,9 @@ import {
 import {
     history
 } from "@/api/chat";
-
+import {
+    getChatRoomInfo
+} from "@/api/chatRoom"
 export default {
     components: {
         ChatHeader,
@@ -91,9 +93,15 @@ export default {
             this.updateMusicInfo(data);
             // this.$message.success(data.msg);
         },
+        async setBqbList(list) {
+            this.setEmoticonList(list)
+        },
+        /* 更新房间列表 */
+        async updateRoomList() {
+            this.getRoomList();
+        },
         /* 用户上线了、更新在线列表、添加新用户上线消息提示、获取房间信息公告 */
         async online(data) {
-            console.log('online', data, '---------------------')
             !this.getHistory && await this.getHistoryMessage();
             const {
                 msg,
@@ -108,9 +116,12 @@ export default {
         },
         /* 来了一条新消息 */
         message(data) {
-            console.log('message', data)
             if (!data || !data.data.message_content) return
             this.setMessageDataList(data.data);
+        },
+        //刷新当前房间在线用户
+        refreshOnlineUser(onlineUser) {
+            this.setOnlineUserList(onlineUser);
         },
         /* 歌曲切换、到新歌曲了 */
         switchMusic(data) {
@@ -122,7 +133,6 @@ export default {
         // /* 服务端来了新的消息提示 */
         notice(data) {
           this.setMessageDataList(data);
-          console.log(data);
         },
         /* 来自服务端的message消息提示 */
         tips(data) {
@@ -138,14 +148,17 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["toggleSignInPopup", "initGetInfo"]),
+        ...mapActions(["toggleSignInPopup", "initGetInfo", "getRoomList"]),
         ...mapMutations([
             "setIsLogin",
             "setOnlineUserList",
             "setMessageDataList",
+            "clearMessageDataList",
             "setCurrentMusicInfo",
             "setCurrentMusicStartTime",
             "setQueueMusicList",
+            "setCurRoomInfo",
+            "setEmoticonList"
         ]),
         /* 调用一个开发API拿到用户位置的js */
         initUserAddress() {
@@ -197,7 +210,6 @@ export default {
                 music_start_time,
                 queue_music_list,
             } = data;
-            console.log(music_start_time,'music_start_time')
             this.setQueueMusicList(queue_music_list);
             this.setCurrentMusicInfo({
                 music_info,
@@ -208,22 +220,27 @@ export default {
         },
         /* TODO 上拉加载更多 */
         async getHistoryMessage() {
-            const res = await history();
+            const res = await history({room_id: this.cur_room_info.room_id});
             this.setMessageDataList(res.result.data);
             this.getHistory = true;
         },
         /* TODO 需要作为可配置项房间信息 */
         initNotice() {
-            setTimeout(() => {
+            setTimeout(async() => {
                 if (this.$socket.connected) {
+                    if(this.cur_room_info.notice === undefined) {
+                        let res = await getChatRoomInfo(this.cur_room_info.room_id);
+                        if(res.code === 200) this.setCurRoomInfo(res.result)
+                    }
                     this.setMessageDataList({
                         message_type: "notice",
-                        message_content: [
-                            "欢迎来到钟大仙的听歌房、欢迎点歌、欢迎各位朋友的到来、一起安安静静听歌吧。"
-                        ],
+                        message_content: [this.cur_room_info.notice],
                     });
                     this.showInitNotice = true;
                 }
+                this.$nextTick(() => {
+                    this.$scorllToBottom();
+                });
             }, 1000);
         },
         /* 关闭弹窗 */
@@ -244,11 +261,17 @@ export default {
     watch: {
         'userInfo.chatBg'(val) {
             console.log(val,'chatBg')
+        },
+        'cur_room_info.room_id'(val) {
+            this.showInitNotice = false;
+            this.getHistory = false;
+            this.clearMessageDataList();
         }
     },
     computed: {
         ...mapState({
-            userInfo: state => state.chat.userInfo
+            userInfo: state => state.chat.userInfo,
+            cur_room_info: state => state.chat.cur_room_info
         }),
         chatBg() {
             return this.userInfo && this.userInfo.chatBg ?

@@ -15,7 +15,6 @@ import { mapState, mapMutations } from "vuex";
 export default {
   watch: {
     music_start_time(n) {
-      console.log(n,'music_start_time')
       this.specifiedTime(n);
     },
   },

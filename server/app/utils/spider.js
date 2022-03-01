@@ -183,6 +183,7 @@ const getMusicDetail = async (mid) => {
       duration,
       score100,
       album,
+      name,
       songTimeMinutes,
       rid: mid,
     } = musicInfoData.data;
@@ -194,7 +195,7 @@ const getMusicDetail = async (mid) => {
         music_duration: duration,
         music_score100: score100,
         music_album: album,
-        music_name: album,
+        music_name: name,
         music_songTimeMinutes: songTimeMinutes,
         music_mid: mid,
       },
@@ -209,7 +210,7 @@ const getMusicDetail = async (mid) => {
  * @param mid
  * @returns
  */
-const getMusciSrc = async (mid) => {
+const getMusicSrc = async (mid) => {
   const url = `https://www.kuwo.cn/api/v1/www/music/playUrl?mid=${mid}&type=music&httpsStatus=1&reqId=853eeac0-3d6f-11ec-928a-dfe06ab55d81`;
   const res = await requestInterface(url);
   if (res.code === 200) {
@@ -219,6 +220,22 @@ const getMusciSrc = async (mid) => {
   }
 };
 
+ /**
+  * 
+  * @param {*} keyword
+  * @returns bqbList 表情包在线地址列表
+  */
+const getBqb = async (keyword) => {
+  const httpUrl = encodeURI(`https://www.fabiaoqing.com/search/bqb/keyword/${keyword}/type/bq/page/1.html`);
+  let res = await axios.get(httpUrl)
+  let $ = cheerio.load(res.data)
+  let bqbList = [];
+  $('#container .searchbqppdiv>a>img').each((i, el) => {
+    bqbList.push($(el).attr('data-original'))
+  })
+  return bqbList
+}
+
 module.exports = {
   requestHtml,
   searchMusic,
@@ -226,5 +243,6 @@ module.exports = {
   getRecommendMusicClass,
   initMusicSheet,
   getMusicDetail,
-  getMusciSrc
+  getMusicSrc,
+  getBqb
 }

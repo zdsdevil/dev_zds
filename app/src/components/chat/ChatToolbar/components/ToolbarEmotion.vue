@@ -22,11 +22,7 @@
             loading="lazy"
             :src="url"
             class="resulu-pic"
-            @click="
-              () => {
-                $emit('sendEmoji', url);
-              }
-            "
+            @click="sendEmoji(url)"
           />
         </div>
       </div>
@@ -35,6 +31,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import Emotion from "@/components/Emotion/Emotion.vue";
 
 export default {
@@ -43,10 +40,10 @@ export default {
     return {
       loading: false,
       keyword: null,
-      emoticonList: [],
     };
   },
   methods: {
+    ...mapMutations(['setEmoticonList']),
     emotion(val) {
       this.$emit("emotion", val);
     },
@@ -54,23 +51,33 @@ export default {
       if (!this.keyword) return;
       this.loading = true;
       try {
-        const res = await this.$API.chat.emoticon({ keyword: this.keyword });
-        this.emoticonList = res;
-        this.loading = false;
+        this.$socket.emit('getBqb',this.keyword)
       } catch (error) {
         this.loading = false;
       }
     },
+    sendEmoji(url) {
+      const data = { message_type: "img", message_content: url};
+      this.$socket.emit("message", data);
+      this.$nextTick(() => {
+        this.$scorllToBottom();
+      });
+    },
     input(e) {
       if (!e.target.value) {
-        this.emoticonList = [];
+        this.setEmoticonList([]);
       }
     },
   },
   created() {},
   mounted() {},
-  watch: {},
-  computed: {},
+  watch: {
+  },
+  computed: {
+    ...mapState({
+      emoticonList: state => state.chat.emoticonList
+    })
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -67,13 +67,26 @@ module.exports = app => {
   //music
   router.get('/api/music/hot', controller.music.hot)
   router.get('/api/music/search', controller.music.search)
+  //musicCollect
+  router.post('/api/musicCollect/create', app.jwt, controller.musicCollect.create)
+  router.get('/api/musicCollect/list', app.jwt, controller.musicCollect.index)
+  router.delete('/api/musicCollect/remove/:id', controller.musicCollect.destroy)
   // socket
   router.post('/api/chat/create', controller.chat.create)
   router.get('/api/chat/list', controller.chat.index)
   router.get('/api/chat/history', controller.chat.index)
+  router.post('/api/chatRoom/create', controller.chatRoom.create)
+  router.get('/api/chatRoom/list', controller.chatRoom.index)
+  router.get('/api/chatRoom/:room_id', controller.chatRoom.show)
+  router.put('/api/chatRoom/:id', controller.chatRoom.update)
   io.route('chat', io.controller.chat.index);
   io.route('message', io.controller.chat.message);
+  io.route('changeRoom', io.controller.chat.changeRoom);
+  io.route('updateRoomList', io.controller.chat.updateRoomList);
   io.route('chooseMusic', io.controller.chat.chooseMusic);
+  io.route('removeQueueMusic', io.controller.chat.removeQueueMusic);
+  io.route('musicToTop', io.controller.chat.musicToTop);
   io.route('cutMusic', io.controller.chat.cutMusic);
   io.route('join', io.controller.chat.join);
+  io.route('getBqb', io.controller.chat.getBqb);
 }

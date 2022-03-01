@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import ChatPopup from "@/components/ChatPopup";
 import ToolbarEmotion from "./components/ToolbarEmotion.vue";
 import ToolbarChooseMusic from "./components/ToolbarChooseMusic.vue";
@@ -90,7 +91,13 @@ export default {
       },
     };
   },
+  watch: {
+    'opt1.show'(val) {
+      !val && this.setEmoticonList([])
+    }
+  },
   methods: {
+    ...mapMutations(['setEmoticonList']),
     openBox(val) {
       if (this[`opt${val}`].show) return (this[`opt${val}`].show = false);
       this.closeBox();
@@ -113,7 +120,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: space-between;
-  color: #999;
+  color: #777;
   padding: 3px 0;
   &-left {
     display: flex;

@@ -81,7 +81,7 @@ export default {
       this.isVisible && (this.unReadNum = 0);
       this.isVisible && this.$emit("newMsg", this.unReadNum);
       !scrollTop && this.$emit("loadMoreMessage");
-      !scrollTop && msgEl.scrollIntoView(true);
+      !scrollTop && msgEl && msgEl.scrollIntoView(true);
       if (el.offsetHeight + scrollTop - scrollHeight === 0) {
         // console.log("到底了");
       }
@@ -117,7 +117,6 @@ export default {
     },
     messageClass() {
       return (item) => {
-        console.log(item)
         const { user_id, message_type } = item;
         if (["text", "img"].includes(message_type)) {
           return user_id === this.mineId ? "mine" : "other";

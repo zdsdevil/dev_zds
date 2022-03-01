@@ -13,7 +13,7 @@
       class="frame"
       @click.stop
     >
-      <div class="frame-title title">{{ title }}</div>
+      <div class="frame-title title"><div>{{ title }}</div><slot name="handle"></slot></div>
       <div class="frame-content"><slot></slot></div>
     </div>
   </transition>
@@ -121,6 +121,7 @@ export default {
     padding-right: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   &-content {
     flex: 1;
