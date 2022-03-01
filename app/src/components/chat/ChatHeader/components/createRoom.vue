@@ -114,12 +114,14 @@ export default {
                     const {
                         room_logo,
                         room_name,
+                        room_id,
                         notice
                     } = this.form;
                     createRoom({
                         master: this.userInfo._id,
                         room_logo,
                         room_name,
+                        room_id,
                         notice
                     }).then(res => {
                         this.$message.success('创建成功')

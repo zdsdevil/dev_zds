@@ -4,7 +4,7 @@
         <div class="container">
             <img class="logo" src="@img/zdx.png">
             <div class="nav">
-                <router-link to="blogger" class="nav-item">个人文章</router-link>
+                <router-link to="article" class="nav-item">个人文章</router-link>
                 <router-link to="tool" class="nav-item">前端导航</router-link>
                 <router-link to="message" class="nav-item">有话说</router-link>
                 <router-link to="rain" class="nav-item">听雨</router-link>
@@ -79,12 +79,12 @@
         <div class="copyright">
             <div class="tip">转载内容版权归作者及来源网站所有,本站原创内容转载请注明来源。</div>
             <div class="copyright-content">
-                <span>Copyright © 2020-2021 zhongdx.com All Rights Reserved.</span>
-                <a target="_blank" href="https://beian.miit.gov.cn/">闽ICP备2020013749号-2</a>
+                <span>Copyright © 2020-2021 zhongdx.site All Rights Reserved.</span>
+                <a target="_blank" href="https://beian.miit.gov.cn/">闽ICP备2022002508号-1</a>
                 <span class="gwab">
                     <a target="_blank" href="https://beian.miit.gov.cn/">
                         <img src="@/assets/img/beian_icon.png" width="18" height="18" alt="京公网安备">
-                        <span>闽ICP备2020013749号-2</span>
+                        <span>闽ICP备2022002508号-1</span>
                     </a>
                 </span>
             </div>
