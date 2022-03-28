@@ -71,6 +71,7 @@ const user = {
           commit('SET_AVATAR', result.avatar)
           resolve(response)
         }).catch(error => {
+          debugger;
           reject(error)
         })
       })

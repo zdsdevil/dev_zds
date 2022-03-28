@@ -25,6 +25,20 @@ const routes = [
     component: () => import(/* webpackChunkName: "chat" */ '@/views/chat/index')
   },
   {
+    path: '/resume',
+    name: 'resume',
+    component: () => import(/* webpackChunkName: "resume" */ '@/views/resume/index')
+  },
+  {
+    path: '/screen',
+    name: 'screen',
+    component: () => import(/* webpackChunkName: "screen" */ '@/views/screen/index2')
+  // },  {
+  //   path: '/screen2',
+  //   name: 'screen2',
+  //   component: () => import(/* webpackChunkName: "screen2" */ '@/views/screen/index2')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import(/* webpackChunkName: "404" */ '@/views/404')

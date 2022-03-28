@@ -15,6 +15,12 @@ import "./assets/css/index.less";
 import "./utils/vue.prototype";
 import Icon from "vue-svg-icon/Icon.vue";
 import Message from "@/components/Message/index.js";
+
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
+
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 Vue.use(Message.register);
 Vue.component("icon", Icon);
 

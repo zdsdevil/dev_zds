@@ -276,7 +276,7 @@ export default {
         chatBg() {
             return this.userInfo && this.userInfo.chatBg ?
             { background: 'url(' + this.userInfo.chatBg + ') 0% 0% / 100% 100% no-repeat'} :
-            { background: 'url("https://jiangly.com/_nuxt/img/banner_111.a6be22c.gif")' }
+            { background: 'url("http://www.zhongdx.site/public/uploads/620d148d129b2667c446d785.jpg")' }
         }
     },
 };
@@ -300,7 +300,7 @@ export default {
     width: 100vw;
     height: 100vh;
     background: url("https://public-1300678944.cos.ap-shanghai.myqcloud.com/blog/1636699165011bg.jpeg");
-    background: url("https://jiangly.com/_nuxt/img/banner_111.a6be22c.gif");
+    background: url("http://www.zhongdx.site/public/uploads/620d148d129b2667c446d785.jpg");
 
     &-container {
         position: fixed;

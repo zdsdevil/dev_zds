@@ -58,6 +58,7 @@ request.interceptors.response.use((response) => {
   if (data.code === 200) return data;
   switch (data.code) {
     case 401:
+      localStorage.removeItem('Access-Token');
       notification.error({
         message: data.error
       })
