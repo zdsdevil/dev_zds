@@ -234,20 +234,20 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-    font-family: 'SourceHanSansCN-Bold';
-    src: url(./SourceHanSansCN-Bold.otf);
-}
+// @font-face {
+//     font-family: 'SourceHanSansCN-Bold';
+//     src: url(./SourceHanSansCN-Bold.otf);
+// }
 
-@font-face {
-    font-family: 'SourceHanSansCN';
-    src: url(./SourceHanSansCN-Normal.otf);
-}
+// @font-face {
+//     font-family: 'SourceHanSansCN';
+//     src: url(./SourceHanSansCN-Normal.otf);
+// }
 
-@font-face {
-    font-family: 'Alibaba_PuHuiTi';
-    src: url(./alibaba_PuHuiTi.ttf);
-}
+// @font-face {
+//     font-family: 'Alibaba_PuHuiTi';
+//     src: url(./alibaba_PuHuiTi.ttf);
+// }
 
 .screen {
     position: absolute;
@@ -268,7 +268,7 @@ export default {
             display: block;
             margin-left: 40px;
             font-size: 36px;
-            font-family: Alibaba_PuHuiTi;
+            // font-family: Alibaba_PuHuiTi;
             font-weight: bold;
             font-style: italic;
             color: #F6FAFF;
@@ -299,7 +299,7 @@ export default {
 
                 .time {
                     font-size: 36px;
-                    font-family: Alibaba_PuHuiTi;
+                    // font-family: Alibaba_PuHuiTi;
                     font-weight: bold;
                     font-style: italic;
                     color: #F6FAFF;
@@ -308,7 +308,7 @@ export default {
                 .day {
                     line-height: 1;
                     font-size: 16px;
-                    font-family: Alibaba_PuHuiTi;
+                    // font-family: Alibaba_PuHuiTi;
                     font-weight: bold;
                     font-style: italic;
                     color: #F6FAFF;
@@ -317,7 +317,7 @@ export default {
                 .week {
                     line-height: 58px;
                     font-size: 32px;
-                    font-family: Alibaba_PuHuiTi;
+                    // font-family: Alibaba_PuHuiTi;
                     font-weight: bold;
                     font-style: italic;
                     color: #F6FAFF;
@@ -378,7 +378,7 @@ export default {
                     height: 36px;
                     padding-left: 15px;
                     line-height: 36px;
-                    font-family: SourceHanSansCN;
+                    // font-family: SourceHanSansCN;
                     color: #fff;
                     font-style: italic;
 
@@ -396,7 +396,7 @@ export default {
                 .text {
                     width: 100%;
                     margin-left: -23px;
-                    font-family: SourceHanSansCN-Bold;
+                    // font-family: SourceHanSansCN-Bold;
                     font-size: 28px;
                     font-style: italic;
                     color: #fff;
@@ -501,7 +501,7 @@ export default {
                         .s {
                             line-height: 1;
                             font-size: 24px;
-                            font-family: SourceHanSansCN;
+                            // font-family: SourceHanSansCN;
                             font-weight: bold;
                             font-style: italic;
                             color: #fff;
@@ -513,7 +513,7 @@ export default {
                             margin-left: 14px;
                             line-height: 1;
                             font-size: 16px;
-                            font-family: SourceHanSansCN;
+                            // font-family: SourceHanSansCN;
                             font-weight: bold;
                             font-style: italic;
                             color: #fff;

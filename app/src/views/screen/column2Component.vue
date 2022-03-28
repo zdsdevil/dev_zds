@@ -28,10 +28,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-    font-family: 'SourceHanSansCN';
-    src: url(./SourceHanSansCN-Normal.otf);
-}
+// @font-face {
+//     font-family: 'SourceHanSansCN';
+//     src: url(./SourceHanSansCN-Normal.otf);
+// }
 
 .column {
     display: flex;
@@ -47,7 +47,7 @@ export default {
         .label {
             width: 90px;
             font-size: 18px;
-            font-family: SourceHanSansCN;
+            // font-family: SourceHanSansCN;
             font-weight: 400;
             font-style: italic;
             color: #95DBFF;
@@ -69,7 +69,7 @@ export default {
         .value {
             width: 50px;
             font-size: 16px;
-            font-family: SourceHanSansCN;
+            // font-family: SourceHanSansCN;
             font-weight: 400;
             font-style: italic;
             color: #95DBFF;

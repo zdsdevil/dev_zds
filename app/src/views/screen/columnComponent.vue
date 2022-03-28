@@ -33,10 +33,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-    font-family: 'SourceHanSansCN';
-    src: url(./SourceHanSansCN-Normal.otf);
-}
+// @font-face {
+//     font-family: 'SourceHanSansCN';
+//     src: url(./SourceHanSansCN-Normal.otf);
+// }
 
 .column {
     display: flex;
@@ -57,7 +57,7 @@ export default {
                 .index {
                     margin: 0 18px 0 10px;
                     font-size: 18px;
-                    font-family: SourceHanSansCN;
+                    // font-family: SourceHanSansCN;
                     font-weight: bold;
                     font-style: italic;
                     color: #FFA800;
@@ -65,7 +65,7 @@ export default {
 
                 .name {
                     font-size: 18px;
-                    font-family: SourceHanSansCN;
+                    // font-family: SourceHanSansCN;
                     font-weight: 400;
                     font-style: italic;
                     color: #B4D3FF;
@@ -74,7 +74,7 @@ export default {
 
             .r-text {
                 font-size: 18px;
-                font-family: SourceHanSansCN;
+                // font-family: SourceHanSansCN;
                 font-weight: bold;
                 font-style: italic;
                 color: #95DBFF;
